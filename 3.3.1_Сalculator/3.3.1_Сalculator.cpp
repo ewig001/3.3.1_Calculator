@@ -4,8 +4,6 @@ class Calculator {
 
 public:
     bool set_num1(double num1) {
-        std::cout << "Введите num1: ";
-        std::cin >> num1;
         if (num1 != 0) {
             this->num1 = num1;
             return true;
@@ -17,8 +15,6 @@ public:
     };
    
     bool set_num2(double num2) {
-        std::cout << "Введите num2: ";
-        std::cin >> num2;
         if (num2 != 0) {
             this->num2 = num2;
             return true;
@@ -34,8 +30,8 @@ public:
     };
 
 private:
-    double num1;
-    double num2;
+    double num1 = 1;
+    double num2 = 1;
     
     double add() {
         return (num1 + num2);
@@ -67,13 +63,24 @@ int main(int argc, char** argv) {
 
     setlocale(LC_ALL, "Russian");
 
-    double num1 = 0, num2 = 0;
     Calculator calculator;
 
     while (true) {
-        while (calculator.set_num1(num1) != true) {
+        double num1 = 0, num2 = 0;
+        bool b = false;
+
+        while (b != true) {
+            std::cout << "Введите num1: ";
+            std::cin >> num1;
+            b = calculator.set_num1(num1);
         };
-        while (calculator.set_num2(num2) != true) {
+
+        b = false;
+
+        while (b != true) {
+            std::cout << "Введите num2: ";
+            std::cin >> num2;
+            b = calculator.set_num2(num2);
         };
         calculator.print_result();
     }
